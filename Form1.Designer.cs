@@ -70,6 +70,10 @@ namespace Dino_Runner_3310
             this.NgToAg = new System.Windows.Forms.Timer(this.components);
             this.QgToAg = new System.Windows.Forms.Timer(this.components);
             this.ag = new System.Windows.Forms.PictureBox();
+            this.secretGround = new System.Windows.Forms.PictureBox();
+            this.secretDino = new System.Windows.Forms.PictureBox();
+            this.sDinoTimer1 = new System.Windows.Forms.Timer(this.components);
+            this.sDinoTimer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dino)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sky)).BeginInit();
@@ -87,6 +91,8 @@ namespace Dino_Runner_3310
             ((System.ComponentModel.ISupportInitialize)(this.agLight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qgLight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secretGround)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secretDino)).BeginInit();
             this.SuspendLayout();
             // 
             // ground
@@ -331,6 +337,40 @@ namespace Dino_Runner_3310
             this.ag.TabStop = false;
             this.ag.Visible = false;
             // 
+            // secretGround
+            // 
+            this.secretGround.Enabled = false;
+            this.secretGround.Location = new System.Drawing.Point(0, 147);
+            this.secretGround.Name = "secretGround";
+            this.secretGround.Size = new System.Drawing.Size(336, 48);
+            this.secretGround.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.secretGround.TabIndex = 19;
+            this.secretGround.TabStop = false;
+            this.secretGround.Visible = false;
+            // 
+            // secretDino
+            // 
+            this.secretDino.BackColor = System.Drawing.Color.Transparent;
+            this.secretDino.Enabled = false;
+            this.secretDino.Location = new System.Drawing.Point(145, 104);
+            this.secretDino.Name = "secretDino";
+            this.secretDino.Size = new System.Drawing.Size(40, 43);
+            this.secretDino.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.secretDino.TabIndex = 20;
+            this.secretDino.TabStop = false;
+            this.secretDino.Visible = false;
+            this.secretDino.Click += new System.EventHandler(this.secretDino_Click);
+            // 
+            // sDinoTimer1
+            // 
+            this.sDinoTimer1.Interval = 200;
+            this.sDinoTimer1.Tick += new System.EventHandler(this.sDinoTimer1_Tick);
+            // 
+            // sDinoTimer2
+            // 
+            this.sDinoTimer2.Interval = 200;
+            this.sDinoTimer2.Tick += new System.EventHandler(this.sDinoTimer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +378,8 @@ namespace Dino_Runner_3310
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(336, 192);
+            this.Controls.Add(this.secretDino);
+            this.Controls.Add(this.secretGround);
             this.Controls.Add(this.ag);
             this.Controls.Add(this.qgLight);
             this.Controls.Add(this.agLight);
@@ -362,7 +404,7 @@ namespace Dino_Runner_3310
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dino Runner 3310";
+            this.Text = "Dino Runner 3310 1.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ground)).EndInit();
@@ -382,6 +424,8 @@ namespace Dino_Runner_3310
             ((System.ComponentModel.ISupportInitialize)(this.agLight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qgLight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secretGround)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secretDino)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,6 +460,10 @@ namespace Dino_Runner_3310
         private System.Windows.Forms.Timer NgToAg;
         private System.Windows.Forms.Timer QgToAg;
         private System.Windows.Forms.PictureBox ag;
+        private System.Windows.Forms.PictureBox secretGround;
+        private System.Windows.Forms.PictureBox secretDino;
+        private System.Windows.Forms.Timer sDinoTimer1;
+        private System.Windows.Forms.Timer sDinoTimer2;
     }
 }
 

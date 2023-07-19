@@ -114,6 +114,9 @@ namespace Dino_Runner_3310
             Score = 0;
 
             restart.Image = Image.FromFile(@"resources\restart.png");
+
+            secretGround.Image = Image.FromFile(@"resources\secret-ground.png");
+            secretDino.Image = Image.FromFile(@"resources\secret-dino-right.gif");
         }
 
         private void gameLoadingTimer_Tick(object sender, EventArgs e)
@@ -203,115 +206,164 @@ namespace Dino_Runner_3310
         {
             if (dino.Bounds.IntersectsWith(cactus.Bounds))
             {
-                cactus.Enabled = false;
-                cactusTimer2.Enabled = false;
+                if (dino.Size.Width == 40)
+                {
+                    cactus.Enabled = false;
+                    cactusTimer2.Enabled = false;
 
-                skyTimer2.Enabled = false;
+                    skyTimer2.Enabled = false;
 
-                dinoJump.Text = "1";
+                    dinoJump.Text = "1";
 
-                dino.Image = Image.FromFile(@"resources\dino-death.png");
-                death.controls.play();
+                    dino.Image = Image.FromFile(@"resources\dino-death.png");
+                    death.controls.play();
 
-                restart.Visible = true;
+                    restart.Visible = true;
+                }
+                else
+                {
+                    death.controls.play();
+
+                    cactus.Enabled = false;
+                    cactus.Visible = false;
+
+                    cactus.Location = new Point(215, 114);
+
+                    cactusTimer2.Enabled = false;
+                    cactusTimer1.Enabled = true;
+
+                    Score += 50;
+                    score.Text = "Score: " + ((Score < 10) ? "0" + Score.ToString() : Score.ToString());
+
+                    if (Score % 100 == 0 && Score > 0)
+                    {
+                        scoreSound.controls.play();
+                    }
+                }
             }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
+            if (secretGround.Enabled == false)
             {
-                if (ag.Visible == false)
+                if (e.KeyCode == Keys.Down)
+                {
+                    if (ag.Visible == false)
+                    {
+                        if (option1.Visible == true)
+                        {
+                            NgToAg.Enabled = true;
+                        }
+
+                        if (option2.Visible == true)
+                        {
+                            agLight.Visible = false;
+                            agDark.Visible = true;
+
+                            qgLight.Visible = true;
+                            qgDark.Visible = false;
+
+                            option2.Visible = false;
+                            option3.Visible = true;
+                        }
+                    }
+                }
+
+                if (e.KeyCode == Keys.Up)
+                {
+                    if (ag.Visible == false)
+                    {
+                        if (option3.Visible == true)
+                        {
+                            QgToAg.Enabled = true;
+                        }
+
+                        if (option2.Visible == true)
+                        {
+                            ngLight.Visible = true;
+                            ngDark.Visible = false;
+
+                            agLight.Visible = false;
+                            agDark.Visible = true;
+
+                            option1.Visible = true;
+                            option2.Visible = false;
+                        }
+                    }
+                }
+
+                if (e.KeyCode == Keys.Enter)
                 {
                     if (option1.Visible == true)
                     {
-                        NgToAg.Enabled = true;
-                    }
-
-                    if (option2.Visible == true)
-                    {
-                        agLight.Visible = false;
-                        agDark.Visible = true;
-
-                        qgLight.Visible = true;
+                        ngLight.Visible = false;
+                        agDark.Visible = false;
                         qgDark.Visible = false;
 
-                        option2.Visible = false;
-                        option3.Visible = true;
-                    }
-                }
-            }
+                        option1.Visible = false;
 
-            if (e.KeyCode == Keys.Up)
-            {
-                if (ag.Visible == false)
-                {
-                    if (option3.Visible == true)
-                    {
-                        QgToAg.Enabled = true;
+                        skyTimer1.Enabled = true;
+                        cactusTimer1.Enabled = true;
+
+                        ground.Visible = true;
+
+                        dino.Visible = true;
+                        dinoJump.Text = "0";
+
+                        score.Visible = true;
                     }
 
                     if (option2.Visible == true)
                     {
-                        ngLight.Visible = true;
-                        ngDark.Visible = false;
-
-                        agLight.Visible = false;
-                        agDark.Visible = true;
-
-                        option1.Visible = true;
                         option2.Visible = false;
+
+                        ngDark.Visible = false;
+                        agLight.Visible = false;
+                        qgDark.Visible = false;
+
+                        ag.Visible = true;
+                    }
+
+                    if (option3.Visible == true)
+                    {
+                        this.Close();
+                    }
+                }
+
+                if (e.KeyCode == Keys.Back)
+                {
+                    if (ag.Visible == true)
+                    {
+                        option2.Visible = true;
+
+                        ngDark.Visible = true;
+                        agLight.Visible = true;
+                        qgDark.Visible = true;
+
+                        ag.Visible = false;
                     }
                 }
             }
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.M)
             {
-                if (option1.Visible == true)
+                if (ground.Visible == false)
                 {
-                    ngLight.Visible = false;
-                    agDark.Visible = false;
-                    qgDark.Visible = false;
+                    if (gameLoading.Visible == false)
+                    {
+                        if (ag.Visible == false)
+                        {
+                            secretGround.Enabled = true;
+                            secretGround.Visible = true;
 
-                    option1.Visible = false;
+                            secretDino.Enabled = true;
+                            secretDino.Visible = true;
 
-                    skyTimer1.Enabled = true;
-                    cactusTimer1.Enabled = true;
-
-                    ground.Visible = true;
-
-                    dino.Visible = true;
-                    dinoJump.Text = "0";
-
-                    score.Visible = true;
+                            sDinoTimer1.Enabled = true;
+                        }
+                    }
                 }
-
-                if (option2.Visible == true)
-                {
-                    option2.Visible = false;
-
-                    ngDark.Visible = false;
-                    agLight.Visible = false;
-                    qgDark.Visible = false;
-
-                    ag.Visible = true;
-                }
-
-                if (option3.Visible == true)
-                {
-                    this.Close();
-                }
-            }
-
-            if (e.KeyCode == Keys.Back)
-            {
-                option2.Visible = true;
-
-                ngDark.Visible = true;
-                agLight.Visible = true;
-                qgDark.Visible = true;
-
-                ag.Visible = false;
             }
 
             if (e.KeyCode == Keys.R)
@@ -398,6 +450,70 @@ namespace Dino_Runner_3310
 
             option3.Visible = false;
             option2.Visible = true; 
+        }
+
+        private void sDinoTimer1_Tick(object sender, EventArgs e)
+        {
+            secretDino.Location = new Point(secretDino.Location.X + 20, secretDino.Location.Y);
+
+            if (secretDino.Location.X >= 280 && secretDino.Location.X <= 325)
+            {
+                sDinoTimer1.Enabled = false;
+                sDinoTimer2.Enabled = true;
+
+                secretDino.Image = Image.FromFile(@"resources\secret-dino-left.gif");
+            }
+        }
+
+        private void sDinoTimer2_Tick(object sender, EventArgs e)
+        {
+            secretDino.Location = new Point(secretDino.Location.X - 20, secretDino.Location.Y);
+
+            if (secretDino.Location.X >= 10 && secretDino.Location.X <= 25)
+            {
+                sDinoTimer2.Enabled = false;
+                sDinoTimer1.Enabled = true;
+
+                secretDino.Image = Image.FromFile(@"resources\secret-dino-right.gif");
+            }
+        }
+
+        private void secretDino_Click(object sender, EventArgs e)
+        {
+            sDinoTimer1.Enabled = false;
+            sDinoTimer2.Enabled = false;
+
+            secretGround.Enabled = false;
+            secretGround.Visible = false;
+
+            secretDino.Enabled = false;
+            secretDino.Visible = false;
+
+            ngLight.Visible = false;
+            agLight.Visible = false;
+            qgLight.Visible = false;
+
+            ngDark.Visible = false;
+            agDark.Visible = false;
+            qgDark.Visible = false;
+
+            option1.Visible = false;
+            option2.Visible = false;
+            option3.Visible = false;
+
+            skyTimer1.Enabled = true;
+            cactusTimer1.Enabled = true;
+
+            ground.Visible = true;
+
+            dino.Visible = true;
+            dinoJump.Text = "0";
+
+            score.Visible = true;
+
+            dino.Image = Image.FromFile(@"resources\mega.gif");
+            dino.Location = new Point(dino.Location.X, dino.Location.Y - 43);
+            dinoJump.Text = "1";
         }       
     }
 }
