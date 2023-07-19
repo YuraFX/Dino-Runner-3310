@@ -25,7 +25,7 @@
 Место на диске: 5 МБ
 
 # Как поиграть?
-* [Скачать](https://github.com/YuraFX/Dino-Runner-3310/releases/tag/1.0) Windows-версию в релизах.
+* [Скачать](https://github.com/YuraFX/Dino-Runner-3310/releases/tag/1.1) Windows-версию в релизах.
 
 ## Полезные ссылки
 * Спрайты для игры брались [отсюда](https://github.com/wayou/t-rex-runner).
