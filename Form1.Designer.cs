@@ -404,7 +404,7 @@ namespace Dino_Runner_3310
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dino Runner 3310 1.1";
+            this.Text = "Dino Runner 3310 1.2";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ground)).EndInit();

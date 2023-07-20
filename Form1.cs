@@ -161,15 +161,21 @@ namespace Dino_Runner_3310
             cactus.Enabled = true;
             cactus.Visible = true;
 
-            int randomX = random.Next(2);
+            int randomX = random.Next(3);
 
             if (randomX == 0)
             {
                 cactus.Image = Image.FromFile(@"resources\cactus-option1.png");
             }
-            else
+
+            if (randomX == 1)
             {
                 cactus.Image = Image.FromFile(@"resources\cactus-option2.png");
+            }
+
+            if (randomX == 2)
+            {
+                cactus.Image = Image.FromFile(@"resources\pterodactyl.gif");
             }
 
             cactusTimer1.Enabled = false;
@@ -209,6 +215,7 @@ namespace Dino_Runner_3310
                 if (dino.Size.Width == 40)
                 {
                     cactus.Enabled = false;
+                    cactus.Visible = false;
                     cactusTimer2.Enabled = false;
 
                     skyTimer2.Enabled = false;
