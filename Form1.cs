@@ -161,21 +161,30 @@ namespace Dino_Runner_3310
             cactus.Enabled = true;
             cactus.Visible = true;
 
-            int randomX = random.Next(3);
+            int randomX = random.Next(4);
 
             if (randomX == 0)
             {
                 cactus.Image = Image.FromFile(@"resources\cactus-option1.png");
+                cactus.Location = new Point(260, 114);
             }
 
             if (randomX == 1)
             {
                 cactus.Image = Image.FromFile(@"resources\cactus-option2.png");
+                cactus.Location = new Point(260, 114);
             }
 
             if (randomX == 2)
             {
                 cactus.Image = Image.FromFile(@"resources\pterodactyl.gif");
+                cactus.Location = new Point(260, 114);
+            }
+
+            if (randomX == 3)
+            {
+                cactus.Image = Image.FromFile(@"resources\pterodactyl.gif");
+                cactus.Location = new Point(260, 80);
             }
 
             cactusTimer1.Enabled = false;
@@ -227,7 +236,25 @@ namespace Dino_Runner_3310
 
                     restart.Visible = true;
                 }
-                else
+
+                if (dino.Size.Width == 55)
+                {
+                    cactus.Enabled = false;
+                    cactus.Visible = false;
+                    cactusTimer2.Enabled = false;
+
+                    skyTimer2.Enabled = false;
+
+                    dinoJump.Text = "1";
+
+                    dino.Image = Image.FromFile(@"resources\dino-death.png");
+                    dino.Location = new Point(dino.Location.X, dino.Location.Y - 17);
+                    death.controls.play();
+
+                    restart.Visible = true;
+                }
+
+                if (dino.Size.Width == 80)
                 {
                     death.controls.play();
 
@@ -246,6 +273,24 @@ namespace Dino_Runner_3310
                     {
                         scoreSound.controls.play();
                     }
+                }
+
+                if (dino.Location == new Point(80, 64))
+                {
+                    cactus.Enabled = false;
+                    cactus.Visible = false;
+                    cactusTimer2.Enabled = false;
+
+                    skyTimer2.Enabled = false;
+
+                    dinoJump.Text = "1";
+                    dinoJumpTimer.Enabled = false;
+
+                    dino.Image = Image.FromFile(@"resources\dino-death.png");
+                    dino.Location = new Point(80, 104);
+                    death.controls.play();
+
+                    restart.Visible = true;
                 }
             }
         }
@@ -275,6 +320,18 @@ namespace Dino_Runner_3310
                             option3.Visible = true;
                         }
                     }
+
+                    if (dino.Location == new Point(80, 104))
+                    {
+                        if (dino.Visible == true)
+                        {
+                            if (restart.Visible == false)
+                            {
+                                dino.Image = Image.FromFile(@"resources\dino-sat-down.gif");
+                                dino.Location = new Point(dino.Location.X, dino.Location.Y + 17);
+                            }
+                        }
+                    }
                 }
 
                 if (e.KeyCode == Keys.Up)
@@ -296,6 +353,18 @@ namespace Dino_Runner_3310
 
                             option1.Visible = true;
                             option2.Visible = false;
+                        }
+                    }
+
+                    if (dino.Location == new Point(80, 121))
+                    {
+                        if (dino.Visible == true)
+                        {
+                            if (restart.Visible == false)
+                            {
+                                dino.Image = Image.FromFile(@"resources\dino.gif");
+                                dino.Location = new Point(dino.Location.X, dino.Location.Y - 17);
+                            }
                         }
                     }
                 }
@@ -410,13 +479,16 @@ namespace Dino_Runner_3310
             {
                 if (dinoJump.Text == "0")
                 {
-                    jump.controls.play();
-                    dinoJump.Text = "1";
-                    dinoJumpTimer.Enabled = true;
+                    if (dino.Size.Width == 40)
+                    {
+                        jump.controls.play();
+                        dinoJump.Text = "1";
+                        dinoJumpTimer.Enabled = true;
 
-                    dino.Image = Image.FromFile(@"resources\dino-jump.png");
+                        dino.Image = Image.FromFile(@"resources\dino-jump.png");
 
-                    dino.Location = new Point(80, 64);
+                        dino.Location = new Point(80, 64);
+                    }
                 }
             }
         }
@@ -521,6 +593,6 @@ namespace Dino_Runner_3310
             dino.Image = Image.FromFile(@"resources\mega.gif");
             dino.Location = new Point(dino.Location.X, dino.Location.Y - 43);
             dinoJump.Text = "1";
-        }       
+        }            
     }
 }
